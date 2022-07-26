@@ -1,7 +1,8 @@
 import "./App.css";
-import { Navbar, Container, Nav, Row, Col } from "react-bootstrap";
+import { Navbar, Container, Nav, Row } from "react-bootstrap";
 import { useState } from "react";
 import data from "./data.js";
+import Item from "./components/Item";
 
 function App() {
   const path = process.env.PUBLIC_URL;
@@ -23,21 +24,9 @@ function App() {
 
       <Container>
         <Row>
-          <Col>
-            <img src={`${path}/img/item1.jpg`} width="80%" className="mb20" />
-            <h4>{Shoes[0].title}</h4>
-            <p>{Shoes[0].price}</p>
-          </Col>
-          <Col>
-            <img src={`${path}/img/item2.jpg`} width="80%" className="mb20" />
-            <h4>{Shoes[1].title}</h4>
-            <p>{Shoes[1].price}</p>
-          </Col>
-          <Col>
-            <img src={`${path}/img/item3.jpg`} width="80%" className="mb20" />
-            <h4>{Shoes[2].title}</h4>
-            <p>{Shoes[2].price}</p>
-          </Col>
+          {Shoes.map((a, i) => {
+            return <Item path={path} Shoes={Shoes[i]} idx={i} />;
+          })}
         </Row>
       </Container>
     </div>
