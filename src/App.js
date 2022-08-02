@@ -1,10 +1,12 @@
 import "./App.css";
-import { Navbar, Container, Nav, Row } from "react-bootstrap";
+import { Container, Row } from "react-bootstrap";
 import { useState } from "react";
-import { Routes, Route, Link } from "react-router-dom";
+import { Routes, Route } from "react-router-dom";
 import data from "./data.js";
+import Header from "./components/Header";
 import Item from "./components/Item";
-import Detail from "./components/Detail";
+import Detail from "./pages/Detail";
+import About from "./pages/About";
 
 function App() {
   const path = process.env.PUBLIC_URL;
@@ -12,16 +14,7 @@ function App() {
 
   return (
     <div className="App">
-      <Navbar className="navbar">
-        <Container>
-          <Navbar.Brand href="#home">SJ-Shop</Navbar.Brand>
-          <Nav className="me-auto">
-            <Nav.Link href="#home">Home</Nav.Link>
-            <Nav.Link href="#Cart">Cart</Nav.Link>
-          </Nav>
-        </Container>
-      </Navbar>
-
+      <Header />
       <Routes>
         <Route
           path="/"
@@ -41,6 +34,13 @@ function App() {
           }
         />
         <Route path="/detail" element={<Detail />} />
+
+        <Route path="/about" element={<About />}>
+          <Route path="member" element={<div>멤버임</div>}></Route>
+          <Route path="location" element={<div>지도표시</div>}></Route>
+        </Route>
+
+        <Route path="*" element={<div>없는 페이지입니다.</div>} />
       </Routes>
     </div>
   );

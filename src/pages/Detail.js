@@ -1,14 +1,13 @@
 import React from "react";
 
 function Detail() {
+  const path = process.env.PUBLIC_URL;
+
   return (
     <div className="container">
       <div className="row">
         <div className="col-md-6">
-          <img
-            src="https://codingapple1.github.io/shop/shoes1.jpg"
-            width="100%"
-          />
+          <img src={`${path}/img/item1.jpg`} width="100%" />
         </div>
         <div className="col-md-6">
           <h4 className="pt-5">상품명</h4>

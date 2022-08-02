@@ -4,7 +4,7 @@ function Item(props) {
   return (
     <Col>
       <img
-        src={`${props.path}/img/item${props.idx}.jpg`}
+        src={`${props.path}/img/item${props.idx + 1}.jpg`}
         width="80%"
         className="mb20"
       />
