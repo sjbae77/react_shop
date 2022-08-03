@@ -1,7 +1,7 @@
 import "./App.css";
 import { Container, Row } from "react-bootstrap";
 import { useState } from "react";
-import { Routes, Route } from "react-router-dom";
+import { Routes, Route, Link } from "react-router-dom";
 import data from "./data.js";
 import Header from "./components/Header";
 import Item from "./components/Item";
