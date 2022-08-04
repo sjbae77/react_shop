@@ -14,7 +14,7 @@ function App() {
   const [Shoes, setShoes] = useState(data);
   const [ViewCount, setViewCount] = useState(0);
   const [MoreBtn, setMoreBtn] = useState(true);
-  const [Load, setLoad] = useState(true);
+  const [Load, setLoad] = useState(false);
 
   return (
     <div className="App">
@@ -34,9 +34,12 @@ function App() {
                   })}
                 </Row>
               </Container>
+              {Load ? <p>로딩중입니다.</p> : null}
               {MoreBtn ? (
                 <button
                   onClick={() => {
+                    setLoad(true);
+
                     if (ViewCount === 0) {
                       axios
                         .get("https://codingapple1.github.io/shop/data2.json")
@@ -44,9 +47,12 @@ function App() {
                           let copy = [...Shoes, ...result.data];
                           setShoes(copy);
 
+                          setLoad(false);
+
                           setViewCount(ViewCount + 1);
                         })
                         .catch(() => {
+                          setLoad(false);
                           console.log("통신 실패");
                         });
                     }
@@ -57,10 +63,13 @@ function App() {
                           let copy = [...Shoes, ...result.data];
                           setShoes(copy);
 
+                          setLoad(false);
+
                           setViewCount(ViewCount + 1);
                           setMoreBtn(false);
                         })
                         .catch(() => {
+                          setLoad(false);
                           console.log("통신 실패");
                         });
                     }
