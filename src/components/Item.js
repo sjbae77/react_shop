@@ -3,7 +3,7 @@ import { Link } from "react-router-dom";
 
 function Item(props) {
   return (
-    <Col>
+    <Col className="col-1-3">
       <Link to={`/detail/${props.idx}`}>
         <img
           src={`${props.path}/img/item${props.idx}.jpg`}

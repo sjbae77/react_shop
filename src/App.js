@@ -2,6 +2,7 @@ import "./App.css";
 import { Container, Row } from "react-bootstrap";
 import { useState } from "react";
 import { Routes, Route, Link } from "react-router-dom";
+import axios from "axios";
 import data from "./data.js";
 import Header from "./components/Header";
 import Item from "./components/Item";
@@ -11,6 +12,9 @@ import About from "./pages/About";
 function App() {
   const path = process.env.PUBLIC_URL;
   const [Shoes, setShoes] = useState(data);
+  const [ViewCount, setViewCount] = useState(0);
+  const [MoreBtn, setMoreBtn] = useState(true);
+  const [Load, setLoad] = useState(true);
 
   return (
     <div className="App">
@@ -30,6 +34,41 @@ function App() {
                   })}
                 </Row>
               </Container>
+              {MoreBtn ? (
+                <button
+                  onClick={() => {
+                    if (ViewCount === 0) {
+                      axios
+                        .get("https://codingapple1.github.io/shop/data2.json")
+                        .then((result) => {
+                          let copy = [...Shoes, ...result.data];
+                          setShoes(copy);
+
+                          setViewCount(ViewCount + 1);
+                        })
+                        .catch(() => {
+                          console.log("통신 실패");
+                        });
+                    }
+                    if (ViewCount === 1) {
+                      axios
+                        .get("https://codingapple1.github.io/shop/data3.json")
+                        .then((result) => {
+                          let copy = [...Shoes, ...result.data];
+                          setShoes(copy);
+
+                          setViewCount(ViewCount + 1);
+                          setMoreBtn(false);
+                        })
+                        .catch(() => {
+                          console.log("통신 실패");
+                        });
+                    }
+                  }}
+                >
+                  더보기
+                </button>
+              ) : null}
             </>
           }
         />
