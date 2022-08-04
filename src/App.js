@@ -12,7 +12,7 @@ import About from "./pages/About";
 function App() {
   const path = process.env.PUBLIC_URL;
   const [Shoes, setShoes] = useState(data);
-  const [ViewCount, setViewCount] = useState(0);
+  const [ViewCount, setViewCount] = useState(2);
   const [MoreBtn, setMoreBtn] = useState(true);
   const [Load, setLoad] = useState(false);
 
@@ -40,39 +40,23 @@ function App() {
                   onClick={() => {
                     setLoad(true);
 
-                    if (ViewCount === 0) {
-                      axios
-                        .get("https://codingapple1.github.io/shop/data2.json")
-                        .then((result) => {
-                          let copy = [...Shoes, ...result.data];
-                          setShoes(copy);
+                    axios
+                      .get(
+                        `https://codingapple1.github.io/shop/data${ViewCount}.json`
+                      )
+                      .then((result) => {
+                        let copy = [...Shoes, ...result.data];
+                        setShoes(copy);
 
-                          setLoad(false);
+                        setLoad(false);
+                        setViewCount(ViewCount + 1);
+                      })
+                      .catch(() => {
+                        setLoad(false);
+                        console.log("통신 실패");
+                      });
 
-                          setViewCount(ViewCount + 1);
-                        })
-                        .catch(() => {
-                          setLoad(false);
-                          console.log("통신 실패");
-                        });
-                    }
-                    if (ViewCount === 1) {
-                      axios
-                        .get("https://codingapple1.github.io/shop/data3.json")
-                        .then((result) => {
-                          let copy = [...Shoes, ...result.data];
-                          setShoes(copy);
-
-                          setLoad(false);
-
-                          setViewCount(ViewCount + 1);
-                          setMoreBtn(false);
-                        })
-                        .catch(() => {
-                          setLoad(false);
-                          console.log("통신 실패");
-                        });
-                    }
+                    if (ViewCount === 3) setMoreBtn(false);
                   }}
                 >
                   더보기
