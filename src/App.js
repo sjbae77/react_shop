@@ -8,6 +8,7 @@ import Header from "./components/Header";
 import Item from "./components/Item";
 import Detail from "./pages/Detail";
 import About from "./pages/About";
+import Cart from "./pages/Cart";
 
 function App() {
   const path = process.env.PUBLIC_URL;
@@ -66,6 +67,8 @@ function App() {
           }
         />
         <Route path="/detail/:id" element={<Detail Shoes={Shoes} />} />
+
+        <Route path="/cart" element={<Cart />}></Route>
 
         <Route path="/about" element={<About />}>
           <Route path="member" element={<div>멤버임</div>}></Route>
