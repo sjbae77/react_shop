@@ -49,7 +49,7 @@ function Detail(props) {
         </div>
       </div>
 
-      <Nav variant="tabs" defaultActiveKey="link0">
+      <Nav variant="tabs" defaultActiveKey="link0" className="mt20">
         <Nav.Item>
           <Nav.Link
             eventKey="link0"
@@ -57,7 +57,7 @@ function Detail(props) {
               setTab(0);
             }}
           >
-            버튼0
+            상세보기
           </Nav.Link>
         </Nav.Item>
         <Nav.Item>
@@ -67,7 +67,7 @@ function Detail(props) {
               setTab(1);
             }}
           >
-            버튼1
+            상품후기
           </Nav.Link>
         </Nav.Item>
         <Nav.Item>
@@ -77,7 +77,7 @@ function Detail(props) {
               setTab(2);
             }}
           >
-            버튼2
+            상품문의
           </Nav.Link>
         </Nav.Item>
       </Nav>
@@ -88,7 +88,11 @@ function Detail(props) {
 }
 
 function TabContent({ Tab }) {
-  return [<div>내용0</div>, <div>내용1</div>, <div>내용2</div>][Tab];
+  return [
+    <div>상세보기 내용입니다.</div>,
+    <div>상품후기 내용입니다.</div>,
+    <div>상품문의 내용입니다.</div>,
+  ][Tab];
 }
 
 export default Detail;
