@@ -1,5 +1,6 @@
 import { useState, useEffect } from "react";
 import { useParams } from "react-router-dom";
+import { Nav } from "react-bootstrap";
 
 function Detail(props) {
   const path = process.env.PUBLIC_URL;
@@ -7,6 +8,7 @@ function Detail(props) {
   let item = props.Shoes.find((x) => x.id == id);
   const [Event, setEvent] = useState(true);
   const [Count, setCount] = useState(0);
+  const [Tab, setTab] = useState(0);
 
   useEffect(() => {
     let timer = setTimeout(() => {
@@ -46,8 +48,55 @@ function Detail(props) {
           <button className="btn btn-danger">주문하기</button>
         </div>
       </div>
+
+      <Nav variant="tabs" defaultActiveKey="link0">
+        <Nav.Item>
+          <Nav.Link
+            eventKey="link0"
+            onClick={() => {
+              setTab(0);
+            }}
+          >
+            버튼0
+          </Nav.Link>
+        </Nav.Item>
+        <Nav.Item>
+          <Nav.Link
+            eventKey="link1"
+            onClick={() => {
+              setTab(1);
+            }}
+          >
+            버튼1
+          </Nav.Link>
+        </Nav.Item>
+        <Nav.Item>
+          <Nav.Link
+            eventKey="link2"
+            onClick={() => {
+              setTab(2);
+            }}
+          >
+            버튼2
+          </Nav.Link>
+        </Nav.Item>
+      </Nav>
+
+      <TabContent Tab={Tab} />
     </div>
   );
+}
+
+function TabContent({ Tab }) {
+  if (Tab === 0) {
+    return <div>내용0</div>;
+  }
+  if (Tab === 1) {
+    return <div>내용1</div>;
+  }
+  if (Tab === 2) {
+    return <div>내용2</div>;
+  }
 }
 
 export default Detail;
