@@ -88,15 +88,7 @@ function Detail(props) {
 }
 
 function TabContent({ Tab }) {
-  if (Tab === 0) {
-    return <div>내용0</div>;
-  }
-  if (Tab === 1) {
-    return <div>내용1</div>;
-  }
-  if (Tab === 2) {
-    return <div>내용2</div>;
-  }
+  return [<div>내용0</div>, <div>내용1</div>, <div>내용2</div>][Tab];
 }
 
 export default Detail;
