@@ -9,6 +9,14 @@
   margin-bottom: 20px;
 }
 
+.start {
+  opacity: 0;
+}
+.end {
+  opacity: 1;
+  transition: opacity 0.8s;
+}
+
 .navbar {
   background-color: #f7f7f7;
 }

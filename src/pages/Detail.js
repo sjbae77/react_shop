@@ -9,6 +9,7 @@ function Detail(props) {
   const [Event, setEvent] = useState(true);
   const [Count, setCount] = useState(0);
   const [Tab, setTab] = useState(0);
+  const [Fade, setFade] = useState("");
 
   useEffect(() => {
     let timer = setTimeout(() => {
@@ -20,8 +21,16 @@ function Detail(props) {
     };
   });
 
+  useEffect(() => {
+    setFade("end");
+
+    return () => {
+      setFade("");
+    };
+  }, []);
+
   return (
-    <div className="container">
+    <div className={`container start ${Fade}`}>
       {Event ? (
         <div className="alert alert-warning">2초이내 구매시 할인</div>
       ) : null}
@@ -88,11 +97,30 @@ function Detail(props) {
 }
 
 function TabContent({ Tab }) {
-  return [
-    <div>상세보기 내용입니다.</div>,
-    <div>상품후기 내용입니다.</div>,
-    <div>상품문의 내용입니다.</div>,
-  ][Tab];
+  const [Fade, setFade] = useState("");
+
+  useEffect(() => {
+    let a = setTimeout(() => {
+      setFade("end");
+    }, 100);
+
+    return () => {
+      clearTimeout(a);
+      setFade("");
+    };
+  }, [Tab]);
+
+  return (
+    <div className={`start ${Fade}`}>
+      {
+        [
+          <div>상세보기 내용입니다.</div>,
+          <div>상품후기 내용입니다.</div>,
+          <div>상품문의 내용입니다.</div>,
+        ][Tab]
+      }
+    </div>
+  );
 }
 
 export default Detail;
