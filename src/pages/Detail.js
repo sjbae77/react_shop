@@ -1,5 +1,5 @@
 import { useState, useEffect } from "react";
-import { useParams } from "react-router-dom";
+import { useParams, useNavigate } from "react-router-dom";
 import { Nav } from "react-bootstrap";
 import { addItem } from "./../redux/cartSlice";
 import { useDispatch } from "react-redux";
@@ -13,6 +13,35 @@ function Detail(props) {
   const [Tab, setTab] = useState(0);
   const [Fade, setFade] = useState("");
   const dispatch = useDispatch();
+  const navigate = useNavigate();
+
+  const useConfirm = (message = null, onConfirm, onCancel) => {
+    if (!onConfirm || typeof onConfirm !== "function") {
+      return;
+    }
+    if (onCancel && typeof onCancel !== "function") {
+      return;
+    }
+
+    const confirmAction = () => {
+      if (window.confirm(message)) {
+        onConfirm();
+      } else {
+        onCancel();
+      }
+    };
+
+    return confirmAction;
+  };
+  const deleteConfirm = () => navigate("/cart");
+  const cancelConfirm = () => {
+    return;
+  };
+  const confirmCart = useConfirm(
+    "장바구니에 담겼습니다. 장바구니로 이동하시겠습니까?",
+    deleteConfirm,
+    cancelConfirm
+  );
 
   useEffect(() => {
     let timer = setTimeout(() => {
@@ -61,8 +90,7 @@ function Detail(props) {
           <button
             className="btn btn-danger"
             onClick={() => {
-              alert("장바구니에 추가되었습니다.");
-
+              confirmCart();
               dispatch(
                 addItem({ id: item.id, name: item.title, count: Count })
               );
