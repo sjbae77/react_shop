@@ -1,11 +1,17 @@
 import { Table } from "react-bootstrap";
-import { useSelector } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
+import { increaseCount, deleteItem } from "./../redux/cartSlice";
 
 function Cart() {
-  let cart = useSelector((state) => state.cart);
+  const user = useSelector((state) => state.user);
+  const cart = useSelector((state) => state.cart);
+  const dispatch = useDispatch();
 
   return (
     <div>
+      <h6>
+        {user.name} {user.age}의 장바구니
+      </h6>
       <Table>
         <thead>
           <tr>
@@ -19,10 +25,26 @@ function Cart() {
           {cart.map((a, i) => {
             return (
               <tr key={i}>
-                <td>{i + 1}</td>
+                <td>{cart[i].id}</td>
                 <td>{cart[i].name}</td>
                 <td>{cart[i].count}</td>
-                <td>안녕</td>
+                <td>
+                  <button
+                    onClick={() => {
+                      dispatch(increaseCount(cart[i].id));
+                    }}
+                  >
+                    +
+                  </button>
+                  <button
+                    className="ml10"
+                    onClick={() => {
+                      dispatch(deleteItem(cart[i].id));
+                    }}
+                  >
+                    삭제
+                  </button>
+                </td>
               </tr>
             );
           })}

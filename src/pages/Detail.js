@@ -1,15 +1,18 @@
 import { useState, useEffect } from "react";
 import { useParams } from "react-router-dom";
 import { Nav } from "react-bootstrap";
+import { addItem } from "./../redux/cartSlice";
+import { useDispatch } from "react-redux";
 
 function Detail(props) {
   const path = process.env.PUBLIC_URL;
   const { id } = useParams();
-  let item = props.Shoes.find((x) => x.id == id);
+  const item = props.Shoes.find((x) => x.id == id);
   const [Event, setEvent] = useState(true);
-  const [Count, setCount] = useState(0);
+  const [Count, setCount] = useState(1);
   const [Tab, setTab] = useState(0);
   const [Fade, setFade] = useState("");
+  const dispatch = useDispatch();
 
   useEffect(() => {
     let timer = setTimeout(() => {
@@ -46,6 +49,7 @@ function Detail(props) {
           <div className="mb20">
             구매수량 : {Count}
             <button
+              className="ml10"
               onClick={() => {
                 setCount(Count + 1);
               }}
@@ -54,7 +58,18 @@ function Detail(props) {
             </button>
           </div>
 
-          <button className="btn btn-danger">주문하기</button>
+          <button
+            className="btn btn-danger"
+            onClick={() => {
+              alert("장바구니에 추가되었습니다.");
+
+              dispatch(
+                addItem({ id: item.id, name: item.title, count: Count })
+              );
+            }}
+          >
+            주문하기
+          </button>
         </div>
       </div>
 
