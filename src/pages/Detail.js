@@ -44,6 +44,15 @@ function Detail(props) {
   );
 
   useEffect(() => {
+    let itemId = localStorage.getItem("watched");
+    itemId = JSON.parse(itemId);
+    itemId.push(item.id);
+    itemId = new Set(itemId);
+    itemId = Array.from(itemId);
+    localStorage.setItem("watched", JSON.stringify(itemId));
+  }, []);
+
+  useEffect(() => {
     let timer = setTimeout(() => {
       setEvent(false);
     }, 2000);

@@ -1,6 +1,6 @@
 import "./App.css";
 import { Container, Row } from "react-bootstrap";
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import { Routes, Route, Link } from "react-router-dom";
 import axios from "axios";
 import data from "./data.js";
@@ -11,6 +11,10 @@ import About from "./pages/About";
 import Cart from "./pages/Cart";
 
 function App() {
+  useEffect(() => {
+    localStorage.setItem("watched", JSON.stringify([]));
+  }, []);
+
   const path = process.env.PUBLIC_URL;
   const [Shoes, setShoes] = useState(data);
   const [ViewCount, setViewCount] = useState(2);

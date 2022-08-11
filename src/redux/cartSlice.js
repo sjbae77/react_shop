@@ -3,8 +3,8 @@ import { createSlice } from "@reduxjs/toolkit";
 let cart = createSlice({
   name: "cart",
   initialState: [
-    { id: 3, name: "White and Black", count: 2 },
-    { id: 4, name: "Grey Yordan", count: 1 },
+    { id: 9, name: "White and Black", count: 2 },
+    { id: 10, name: "Grey Yordan", count: 1 },
   ],
   reducers: {
     increaseCount(state, action) {
