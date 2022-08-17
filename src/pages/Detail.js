@@ -44,12 +44,18 @@ function Detail(props) {
   );
 
   useEffect(() => {
-    let itemId = localStorage.getItem("watched");
-    itemId = JSON.parse(itemId);
-    itemId.push(item.id);
-    itemId = new Set(itemId);
-    itemId = Array.from(itemId);
-    localStorage.setItem("watched", JSON.stringify(itemId));
+    let get_local = localStorage.getItem("watched");
+
+    if (get_local === null) {
+      get_local = [];
+    } else {
+      get_local = JSON.parse(get_local);
+    }
+
+    get_local.push(item);
+    get_local = new Set(get_local);
+    get_local = Array.from(get_local);
+    localStorage.setItem("watched", JSON.stringify(get_local));
   }, []);
 
   useEffect(() => {

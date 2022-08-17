@@ -6,20 +6,25 @@ import axios from "axios";
 import data from "./data.js";
 import Header from "./components/Header";
 import Item from "./components/Item";
+import WatchedItem from "./components/WatchedItem";
 import Detail from "./pages/Detail";
 import About from "./pages/About";
 import Cart from "./pages/Cart";
 
 function App() {
-  useEffect(() => {
-    localStorage.setItem("watched", JSON.stringify([]));
-  }, []);
-
   const path = process.env.PUBLIC_URL;
   const [Shoes, setShoes] = useState(data);
   const [ViewCount, setViewCount] = useState(2);
   const [MoreBtn, setMoreBtn] = useState(true);
   const [Load, setLoad] = useState(false);
+
+  let get_local = JSON.parse(localStorage.getItem("watched"));
+
+  useEffect(() => {
+    if (get_local === null) {
+      localStorage.setItem("watched", JSON.stringify([]));
+    }
+  }, []);
 
   return (
     <div className="App">
@@ -67,6 +72,8 @@ function App() {
                   더보기
                 </button>
               ) : null}
+
+              <WatchedItem get_local={get_local} />
             </>
           }
         />
