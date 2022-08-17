@@ -9,11 +9,8 @@ function WatchedItem({ get_local }) {
         ? get_local.map((a, i) => {
             return (
               <div key={i}>
-                <img
-                  src={`${path}/img/item${get_local[i].id}.jpg`}
-                  width="100%"
-                />
-                <p className="get-local">{get_local[i].title}</p>
+                <img src={`${path}/img/item${a}.jpg`} width="100%" />
+                {/* <p className="get-local">{get_local[i].title}</p> */}
               </div>
             );
           })

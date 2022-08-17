@@ -52,10 +52,15 @@ function Detail(props) {
       get_local = JSON.parse(get_local);
     }
 
-    get_local.push(item);
+    get_local.unshift(item.id);
     get_local = new Set(get_local);
     get_local = Array.from(get_local);
     localStorage.setItem("watched", JSON.stringify(get_local));
+
+    if (get_local.length > 3) {
+      get_local.pop();
+      localStorage.setItem("watched", JSON.stringify(get_local));
+    }
   }, []);
 
   useEffect(() => {
