@@ -73,11 +73,11 @@ function App() {
                 </button>
               ) : null}
 
-              <WatchedItem get_local={get_local} />
+              <WatchedItem get_local={get_local} Shoes={Shoes} />
             </>
           }
         />
-        <Route path="/detail/:id" element={<Detail Shoes={Shoes} />} />
+        <Route path="/detail/:id" element={<Detail />} />
 
         <Route path="/cart" element={<Cart />}></Route>
 

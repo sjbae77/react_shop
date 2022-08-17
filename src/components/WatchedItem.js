@@ -1,4 +1,4 @@
-function WatchedItem({ get_local }) {
+function WatchedItem({ get_local, Shoes }) {
   const path = process.env.PUBLIC_URL;
 
   return (
@@ -10,7 +10,6 @@ function WatchedItem({ get_local }) {
             return (
               <div key={i}>
                 <img src={`${path}/img/item${a}.jpg`} width="100%" />
-                {/* <p className="get-local">{get_local[i].title}</p> */}
               </div>
             );
           })
