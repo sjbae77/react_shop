@@ -7,7 +7,7 @@ function Header() {
   return (
     <Navbar className="navbar">
       <Container>
-        <Navbar.Brand href="#home">SJ-Shop</Navbar.Brand>
+        <Navbar.Brand href="#home">NIKE SHOP</Navbar.Brand>
         <Nav className="me-auto">
           <Nav.Link
             onClick={() => {
