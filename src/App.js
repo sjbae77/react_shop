@@ -86,7 +86,7 @@ function App() {
           <Route path="location" element={<div>지도표시</div>}></Route>
         </Route>
 
-        <Route path="*" element={<div>없는 페이지입니다.</div>} />
+        {/* <Route path="*" element={<div>없는 페이지입니다.</div>} /> */}
       </Routes>
     </div>
   );
