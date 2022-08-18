@@ -3,7 +3,7 @@ import { Outlet } from "react-router-dom";
 function About() {
   return (
     <div>
-      <h4>회사정보임</h4>
+      <h4>회사소개 페이지입니다.</h4>
       <Outlet></Outlet>
     </div>
   );
