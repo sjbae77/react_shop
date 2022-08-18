@@ -39,7 +39,7 @@ button {
 .watched {
   z-index: 10;
   position: fixed;
-  bottom: 0;
+  bottom: 20px;
   right: 20px;
   border: 1px solid #ddd;
   width: 130px;

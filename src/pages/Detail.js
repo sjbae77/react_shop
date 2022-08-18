@@ -61,6 +61,8 @@ function Detail(props) {
       get_local.pop();
       localStorage.setItem("watched", JSON.stringify(get_local));
     }
+
+    props.setWatched(get_local);
   }, []);
 
   useEffect(() => {

@@ -17,6 +17,7 @@ function App() {
   const [ViewCount, setViewCount] = useState(2);
   const [MoreBtn, setMoreBtn] = useState(true);
   const [Load, setLoad] = useState(false);
+  const [Watched, setWatched] = useState([]);
 
   let get_local = JSON.parse(localStorage.getItem("watched"));
 
@@ -24,6 +25,7 @@ function App() {
     if (get_local === null) {
       localStorage.setItem("watched", JSON.stringify([]));
     }
+    setWatched(get_local);
   }, []);
 
   return (
@@ -47,6 +49,7 @@ function App() {
               {Load ? <p>로딩중입니다.</p> : null}
               {MoreBtn ? (
                 <button
+                  style={{ margin: "20px 0" }}
                   onClick={() => {
                     setLoad(true);
 
@@ -73,11 +76,14 @@ function App() {
                 </button>
               ) : null}
 
-              <WatchedItem get_local={get_local} Shoes={Shoes} />
+              <WatchedItem Watched={Watched} />
             </>
           }
         />
-        <Route path="/detail/:id" element={<Detail Shoes={Shoes} />} />
+        <Route
+          path="/detail/:id"
+          element={<Detail Shoes={Shoes} setWatched={setWatched} />}
+        />
 
         <Route path="/cart" element={<Cart />}></Route>
 
